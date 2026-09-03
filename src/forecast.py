@@ -4,14 +4,14 @@ ARIMA time-series model, and writes the forecast back into SQLite.
 """
 import sqlite3
 import warnings
-from pathlib import Path
 
 import pandas as pd
 from statsmodels.tsa.arima.model import ARIMA
 
+from config import DB_PATH
+
 warnings.filterwarnings("ignore")
 
-DB_PATH = Path(__file__).resolve().parent.parent / "data" / "energy_data.db"
 HORIZON_DAYS = 30
 
 

@@ -3,12 +3,11 @@ Pulls historical crude oil futures prices (WTI and Brent) and loads them
 into a local SQLite database for the energy market dashboard.
 """
 import sqlite3
-from pathlib import Path
 
 import pandas as pd
 import yfinance as yf
 
-DB_PATH = Path(__file__).resolve().parent.parent / "data" / "energy_data.db"
+from config import DB_PATH
 
 TICKERS = {
     "WTI": "CL=F",

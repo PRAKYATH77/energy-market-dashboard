@@ -4,13 +4,12 @@ Shows historical WTI/Brent prices, a 30-day forecast, and headline KPIs
 in the style of a client-facing energy market deliverable.
 """
 import sqlite3
-from pathlib import Path
 
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-DB_PATH = Path(__file__).resolve().parent.parent / "data" / "energy_data.db"
+from config import DB_PATH
 
 st.set_page_config(page_title="Energy Market Dashboard", layout="wide")
 
