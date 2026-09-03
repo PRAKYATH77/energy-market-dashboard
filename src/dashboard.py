@@ -29,8 +29,23 @@ def load_data():
 st.title("Crude Oil Market Intelligence Dashboard")
 st.caption("WTI & Brent price history, 30-day forecast, and market KPIs")
 
-if not DB_PATH.exists():
-    with st.spinner("First run: fetching prices and building the forecast..."):
+REQUIRED_TABLES = {"oil_prices", "oil_price_forecast", "oil_price_backtest"}
+
+
+def db_is_ready() -> bool:
+    if not DB_PATH.exists():
+        return False
+    conn = sqlite3.connect(DB_PATH)
+    tables = {
+        row[0]
+        for row in conn.execute("SELECT name FROM sqlite_master WHERE type='table'")
+    }
+    conn.close()
+    return REQUIRED_TABLES.issubset(tables)
+
+
+if not db_is_ready():
+    with st.spinner("Building database: fetching prices and running the forecast..."):
         import fetch_data
         import forecast as forecast_module
 
