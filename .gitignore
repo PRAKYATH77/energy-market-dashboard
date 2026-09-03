@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+data/energy_data.db
+.streamlit/secrets.toml
